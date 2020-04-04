@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+state={
+  fecha: new Date("2018", "06", "22")
+}
+
+onChange=fecha=>{
+  this.setState({fecha: fecha});
+}
+
+mostrarFecha = fecha=>{
+  alert(fecha);
+}
+
+  render() {
+    return (
+      <>
+        <div className="contenedor">
+          <div className="center">
+           <DatePicker selected={this.state.fecha} onChange={this.onChange}/>
+           <br /><br />
+
+           <input type="button" value="Mostrar Fecha" className="btn btn-primary" onClick={()=>this.mostrarFecha(this.state.fecha)}/>
+          </div>
+        </div>
+      </>
+    );
+  }
 }
 
 export default App;
